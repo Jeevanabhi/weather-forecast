@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import "./App.css";
 
 // Base API URL (your ngrok tunnel)
-const API_URL = "https://38990386617b.ngrok-free.app/";
+const API_URL = "https://f008cc202b2b.ngrok-free.app/";
 
 export default function App() {
   const [city, setCity] = useState("");
