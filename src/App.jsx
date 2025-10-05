@@ -3,8 +3,8 @@ import axios from "axios";
 import dayjs from "dayjs";
 import "./App.css";
 
-// Base API URL
-const API_URL = "https://f46baf8dcd94.ngrok-free.app/";
+// Base API URL (your ngrok tunnel)
+const API_URL = "https://38990386617b.ngrok-free.app/";
 
 export default function App() {
   const [city, setCity] = useState("");
@@ -13,10 +13,22 @@ export default function App() {
   const [loading, setLoading] = useState(false);
 
   const cities = [
-    "Thiruvananthapuram","Trivandrum","Kollam","Alappuzha",
-    "Pathanamthitta","Kottayam","Idukki","Ernakulam","Kochi",
-    "Thrissur","Palakkad","Malappuram","Kozhikode",
-    "Wayanad","Kannur","Kasaragod"
+    "Thiruvananthapuram",
+    "Trivandrum",
+    "Kollam",
+    "Alappuzha",
+    "Pathanamthitta",
+    "Kottayam",
+    "Idukki",
+    "Ernakulam",
+    "Kochi",
+    "Thrissur",
+    "Palakkad",
+    "Malappuram",
+    "Kozhikode",
+    "Wayanad",
+    "Kannur",
+    "Kasaragod",
   ];
 
   const handleSubmit = async (e) => {
@@ -26,14 +38,22 @@ export default function App() {
     setResult(null);
 
     try {
-      // GET request with query parameters
       const res = await axios.get(`${API_URL}forecast`, {
-        params: { city, date }
-      });  console.log("API response:", res.data); // 🔥 Debug line
+        params: { city, date },
+        headers: {
+          // 👇 This header bypasses ngrok's interstitial warning
+          "ngrok-skip-browser-warning": "true",
+          "Access-Control-Allow-Origin": "*", // 👈 bypass ngrok’s block
+        },
+      });
 
+      console.log("API response:", res.data);
       setResult(res.data);
     } catch (err) {
-      setResult({ error: err.response?.data?.error || "Something went wrong." });
+      console.error("API Error:", err);
+      setResult({
+        error: err.response?.data?.error || "Something went wrong.",
+      });
     } finally {
       setLoading(false);
     }
@@ -43,12 +63,25 @@ export default function App() {
     <div className="container">
       <h1 className="title">🌤️ Climate Estimator</h1>
       <form onSubmit={handleSubmit} className="form">
-        <select value={city} onChange={(e) => setCity(e.target.value)} className="select">
+        <select
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          className="select"
+        >
           <option value="">Select City</option>
-          {cities.map((c) => <option key={c} value={c}>{c}</option>)}
+          {cities.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
         </select>
 
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="date" />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="date"
+        />
 
         <button type="submit" className="button">
           {loading ? "Fetching..." : "Get Forecast"}
@@ -66,12 +99,18 @@ export default function App() {
               {result.source === "Open-Meteo API" ? (
                 <>
                   <h3 className="temp">{result.temperature_C}°C</h3>
-                  <p className="note">Based on real-time forecast from Open-Meteo.</p>
+                  <p className="note">
+                    Based on real-time forecast from Open-Meteo.
+                  </p>
                 </>
               ) : (
                 <>
-                  <h3 className="prediction">🌦️ Likely to be {result.predicted_weather} on this day</h3>
-                  <p className="note">Predicted using ML model (beyond 16 days)</p>
+                  <h3 className="prediction">
+                    🌦️ Likely to be {result.predicted_weather} on this day
+                  </h3>
+                  <p className="note">
+                    Predicted using ML model (beyond 16 days)
+                  </p>
                 </>
               )}
             </>
