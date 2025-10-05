@@ -1,0 +1,127 @@
+/* Body & HTML */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  background-color: #b3d9ff; /* Light blue page background */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 60px;
+}
+
+/* Container */
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 480px;
+  background: transparent; /* Allow body background to show */
+}
+
+/* Title */
+.title {
+  font-size: 2.5rem;   /* Increased from 2rem to 2.5rem */
+  font-weight: 900;    /* Increased from 700 to 900 for extra bold */
+  color: #202124;
+  margin-bottom: 30px;
+}
+
+
+/* Form card */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.85); /* Slightly transparent white over blue */
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.form:hover {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Dropdown */
+.select {
+  padding: 12px 14px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+  color: #202124;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease-in-out;
+}
+
+.select:focus {
+  border: 1px solid #4285f4;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+/* Date picker */
+.date {
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  font-family: 'Roboto Mono', monospace; /* Updated font */
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #202124;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  max-width: 200px;
+}
+
+.date:focus {
+  border: 1px solid #4285f4;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+
+
+/* Button */
+.button {
+  padding: 12px 20px;
+  font-weight: 500;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #4285f4, #34a853);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #3367d6, #2c8c45);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(66, 133, 244, 0.4);
+}
+
+/* Result card */
+.result-card {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.85); /* Slightly transparent over blue */
+  padding: 28px 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Other styles remain the same... */
